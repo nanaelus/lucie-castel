@@ -62,10 +62,23 @@ class BookRepository
 {
     public DatabaseConnection $connection;
 
-    public function getBooks(): array
+    public function getBooks(): ?array
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, attendees, summary, isbn FROM book"
+        );
+        $books = [];
+        while ($row = $statement->fetch()) {
+            $book = new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
+            $books[] = $book;
+        }
+        return $books;
+    }
+
+    public function getHighlightedBooks(): ?array
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, attendees, summary, isbn FROM book WHERE highlighted = 1"
         );
         $books = [];
         while ($row = $statement->fetch()) {
