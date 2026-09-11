@@ -8,9 +8,9 @@
 
 <body>
     <nav class="menu">
-        <div id="logo">Logo</div>
+        <div id="logo"><a href="index.php">Logo</a></div>
         <ul>
-            <li>Livres</li>
+            <li><a href="?action=tous-mes-livres">Livres</a></li>
             <li>Illustrations</li>
             <li>Ateliers</li>
             <li>Contact</li>

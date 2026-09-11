@@ -13,5 +13,14 @@ use Application\Model\Book\BookRepository;
 
 class AllBooks
 {
+    public function execute(): void
+    {
+        $BookRepository = new BookRepository();
+        $BookRepository->connection = new DatabaseConnection();
+
+        $books = $BookRepository->getBooks();
+
+        require('templates/allBooks.php');
+    }
     
 }
