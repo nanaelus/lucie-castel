@@ -62,7 +62,6 @@ class BookRepository
 {
     public DatabaseConnection $connection;
 
-<<<<<<< HEAD
 
     /**
      * Get all books from the database
@@ -70,8 +69,6 @@ class BookRepository
      * Execute a SQL query to retrieve all books from the database and return them as an array of Book objects.
      * @return array|null An array of Book objects or null if no books are found
      */
-=======
->>>>>>> 6264ea9fd07f5ce6ec4ff9870ecbe62bff646e95
     public function getBooks(): ?array
     {
         $statement = $this->connection->getConnection()->query(
@@ -82,7 +79,6 @@ class BookRepository
             $book = new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
             $books[] = $book;
         }
-<<<<<<< HEAD
         if (empty($books)) {
             return null;
         }
@@ -95,11 +91,6 @@ class BookRepository
      * Execute a SQL query to retrieve highlighted books from the database and return them as an array of Book objects.
      * @return array|null An array of Book objects or null if no highlighted books are found
      */
-=======
-        return $books;
-    }
-
->>>>>>> 6264ea9fd07f5ce6ec4ff9870ecbe62bff646e95
     public function getHighlightedBooks(): ?array
     {
         $statement = $this->connection->getConnection()->query(
@@ -110,12 +101,9 @@ class BookRepository
             $book = new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
             $books[] = $book;
         }
-<<<<<<< HEAD
         if (empty($books)) {
             return null;
         }
-=======
->>>>>>> 6264ea9fd07f5ce6ec4ff9870ecbe62bff646e95
         return $books;
     }
 }
