@@ -15,6 +15,11 @@ class AllIllustrations
 {
     public function execute(): void
     {
+        $IllustrationRepository = new IllustrationRepository();
+        $IllustrationRepository->connection = new DatabaseConnection();
+
+        $illustrations = $IllustrationRepository->getIllustrations();
+
         require('templates/all-illustrations.php');
     }
 }

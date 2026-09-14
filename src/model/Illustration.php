@@ -13,8 +13,8 @@ class Illustration
     public function __construct(
         private int $id,
         private string $name,
-        private string $date,
-        private string $description
+        private ?string $date,
+        private ?string $description
         ) {}
 
     public function getId(): int
@@ -27,12 +27,12 @@ class Illustration
         return $this->name;
     }
 
-    public function getDate(): string
+    public function getDate(): ?string
     {
         return $this->date;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -42,7 +42,7 @@ class IllustrationRepository
 {
     public DatabaseConnection $connection;
 
-    public function getIllustration(): ?array
+    public function getIllustrations(): ?array
     {
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, description FROM illustration"
