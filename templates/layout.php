@@ -12,7 +12,7 @@
         <ul>
             <li><a href="?action=tous-mes-livres">Livres</a></li>
             <li><a href="?toutes-mes-illustrations">Illustrations</a></li>
-            <li>Ateliers</li>
+            <li><a href="?tous-mes-ateliers">Ateliers</a></li>
             <li>Contact</li>
         </ul>
     </nav>
