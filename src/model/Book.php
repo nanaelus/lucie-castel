@@ -106,4 +106,16 @@ class BookRepository
         }
         return $books;
     }
+
+    public function getBookById(int $id): ?Book
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, attendees, summary, isbn FROM book WHERE id = $id"
+        );
+        $row = $statement->fetch();
+        if ($row) {
+            return new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
+        }
+        return null;
+    }
 }
