@@ -14,7 +14,9 @@ class SendMail
     {
         $mailer = new Mailer();
 
-        $ok = $mailer->send('mameldecheval@hotmail.fr', 'Nouveau message du formulaire de contact', "Ceci est le corps du message test.");
+        $message = "Nouveau message de ${input['name']} (${input['email']}) :\n\n${input['message']}";
+
+        $ok = $mailer->send('mameldecheval@hotmail.fr', 'Nouveau message du formulaire de contact', $message);
         if ($ok) {
             echo 'Message envoyé.';
         } else {
