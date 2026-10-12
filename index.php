@@ -6,6 +6,7 @@ require_once('src/controllers/AllIllustrations.php');
 require_once('src/controllers/AllWorkshops.php');
 require_once('src/controllers/Contact.php');
 require_once('src/controllers/Book.php');
+require_once('src/controllers/Illustration.php');
 require_once('src/controllers/SendMail.php');
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -18,6 +19,7 @@ use Application\Controllers\AllIllustrations\AllIllustrations;
 use Application\Controllers\AllWorkshops\AllWorkshops;
 use Application\Controllers\Contact\Contact;
 use Application\Controllers\Book\Book;
+use Applicaiton\Controllers\Illustration\Illustration;
 use Application\Controllers\SendMail\SendMail;
 
 try {
@@ -28,13 +30,17 @@ try {
             } else {
                 (new AllBooks())->execute();
             }
+        } elseif ($_GET['action'] === 'toutes-mes-illustrations') {
+            if(isset($_GET['id']) && $_GET['id'] > 0) {
+                (new Illustration())->execute((int)$_GET['id']);
+            } else {
+                (new AllIllustrations())->execute();
+            }
         } elseif ($_GET['action'] === 'contact') {
             (new Contact())->execute();
         } elseif ($_GET['action'] === 'mail') {
             (new SendMail())->execute($_POST);
         }
-    } elseif (isset($_GET['toutes-mes-illustrations'])) {
-        (new AllIllustrations())->execute();
     } elseif (isset($_GET['tous-mes-ateliers'])) {
         (new AllWorkshops())->execute();
     }
