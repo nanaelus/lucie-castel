@@ -62,4 +62,16 @@ class IllustrationRepository
         }
         return $illustrations;
     }
+
+    public function getIllustrationById(int $id): ?Illustration
+    {
+        $statement = $this->connection->getConnection()->query(
+            "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, description FROM illustration WHERE id = $id"
+        );
+        $row = $statement->fetch();
+        if($row) {
+            return new Illustration($row['id'], $row['name'], $row['french_date'], $row['description']);
+        }
+        return null;
+    }
 }
