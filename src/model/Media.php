@@ -30,7 +30,7 @@ class Media
                 $row['file_path'],
                 $row['entity_id'],
                 $row['entity_type']
-            )
+            );
             $medias[] = $media;
         }
         if (empty($medias)) {
