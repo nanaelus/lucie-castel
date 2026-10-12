@@ -11,7 +11,7 @@
         <div id="logo"><a href="index.php">Logo</a></div>
         <ul>
             <li><a href="?action=tous-mes-livres">Livres</a></li>
-            <li><a href="?toutes-mes-illustrations">Illustrations</a></li>
+            <li><a href="?action=toutes-mes-illustrations">Illustrations</a></li>
             <li><a href="?tous-mes-ateliers">Ateliers</a></li>
             <li><a href="?action=contact">Contact</a></li>
         </ul>
