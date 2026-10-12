@@ -22,7 +22,7 @@ nav ul {
 }
 
 .menu {
-    background-color: #deadadfc;
+    /* background-color: #deadadfc; */
     position:fixed;
     height:100%;
     width: 350px;

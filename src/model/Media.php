@@ -10,32 +10,13 @@ require_once('src/Lib/Database.php');
 
 class Media
 {
-    public function __construct(
-        private int $id,
-        private string $file_path,
-        private int $entity_id,
-        private string $entity_type
-    ) {}
-
-
-    public function getMediaByEntityIdAndType(int $entity_id, string $entity_type): ?array
+    public function getMainMediaByEntityIdAndType(int $entityId, string $type): ?string
     {
-        $statement = $this->connection->getConnection()->query(
-            "SELECT id, file_path, entity_id, entity_type FROM media WHERE entity_id = $entity_id AND entity_type = '$entity_type'"
+        $statement = $this->connection->getConnection()->prepare(
+            'SELECT file_path FROM media WHERE entity_id = ? AND entity_type = ? AND main_image = TRUE LIMIT 1'
         );
-        $medias = [];
-        while ($row = $statement->fetch()) {
-            $media = new Media(
-                $row['id'],
-                $row['file_path'],
-                $row['entity_id'],
-                $row['entity_type']
-            );
-            $medias[] = $media;
-        }
-        if (empty($medias)) {
-            return null;
-        }
-        return $medias;
+        $statement->execute([$entityId, $type]);
+        $media = $statement->fetchColumn();
+        return $media ?: null;
     }
 }
