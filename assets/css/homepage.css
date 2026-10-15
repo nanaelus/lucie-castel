@@ -1,0 +1,11 @@
+.homepage-image {
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.content {
+    display: flex;
+}

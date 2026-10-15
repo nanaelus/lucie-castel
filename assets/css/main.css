@@ -22,12 +22,13 @@ nav ul {
 }
 
 .menu {
-    background-color: #deadadfc;
+    /* background-color: #deadadfc; */
     position:fixed;
     height:100%;
     width: 350px;
     display: flex;
     flex-direction: column;
+    background-color: antiquewhite;
 }
 
 li {
@@ -36,9 +37,10 @@ li {
 }
 
 .content {
+    display: flex;
     width: 100%;
     max-width: 95em;
-    margin: 0 auto;
+    margin: auto;
     padding-left: 350px;
 }
 
@@ -47,16 +49,22 @@ p {
 }
 
 main {
+    flex: 1;
     display: grid;
-    grid-template-columns: 3fr 3fr 3fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-}
-
-.book {
-    background-color: #f5f109;
+    margin-left: -200px;
+    margin-top: 80px;
 }
 
 .main-title {
     text-align: center;
     margin: 20px 0 20px -20px;
+}
+
+.book  img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block; 
 }

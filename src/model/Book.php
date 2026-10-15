@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Model\Book;
 
 use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Media\Media;
 
 require_once('src/Lib/Database.php');
 
@@ -71,12 +72,15 @@ class BookRepository
      */
     public function getBooks(): ?array
     {
+        $media = new Media();
+        $media->connection = new DatabaseConnection();
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, attendees, summary, isbn FROM book"
         );
         $books = [];
         while ($row = $statement->fetch()) {
             $book = new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
+            $book->file_path = $media->getMainMediaByEntityIdAndType($book->getId(), 'book');
             $books[] = $book;
         }
         if (empty($books)) {

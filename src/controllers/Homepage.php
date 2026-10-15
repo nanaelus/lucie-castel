@@ -6,10 +6,12 @@ namespace Application\Controllers\Homepage;
 
 require_once('src/lib/Database.php');
 require_once('src/model/Book.php');
+require_once('src/model/Media.php');
 
 use Application\Lib\Database\DatabaseConnection;
 use Application\Model\Book\Book;
 use Application\Model\Book\BookRepository;
+use Application\Model\Media\Media;
 
 class Homepage
 {
@@ -25,11 +27,16 @@ class Homepage
         $bookRepository = new BookRepository();
         $bookRepository->connection = new DatabaseConnection();
         $books = $bookRepository->getHighlightedBooks();
+        $bookMedia = new Media();
+        $bookMedia->connection = new DatabaseConnection();
 
         if($books === null || empty($books)) {
             return null;
         }
         $randomBookId = array_rand($books);
-        return $books[$randomBookId];
+
+        $randomBook = $books[array_rand($books)];
+        $randomBook->file_path = $bookMedia->getMainMediaByEntityIdAndType($randomBook->getid(), 'book');
+        return $randomBook;
     }
 }
