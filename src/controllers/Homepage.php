@@ -36,7 +36,6 @@ class Homepage
         $randomBookId = array_rand($books);
 
         $randomBook = $books[array_rand($books)];
-        $randomBook->file_path = $bookMedia->getMainMediaByEntityIdAndType($randomBook->getid(), 'book');
         return $randomBook;
     }
 }
