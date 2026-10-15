@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Application\Model\Illustration;
 
 use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Media\Media;
 
 require_once('src/Lib/Database.php');
+require_once('src/model/media.php');
 
 class Illustration
 {
@@ -44,6 +46,8 @@ class IllustrationRepository
 
     public function getIllustrations(): ?array
     {
+        $media = new Media();
+        $media->connection = new DatabaseConnection();
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, description FROM illustration"
         );
@@ -55,6 +59,7 @@ class IllustrationRepository
                 $row['french_date'],
                 $row['description']
             );
+            $illustration->file_path = $media->getMainMediaByEntityIdAndType($illustration->getId(), 'illustration');
             $illustrations[] = $illustration;
         }
         if (empty($illustrations)) {

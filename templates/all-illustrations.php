@@ -6,11 +6,7 @@
 <?php if ($illustrations) {
     foreach ($illustrations as $i) { ?>
     <div class="book">
-        <p><?= $i->getName(); ?></p>
-        <p><?= $i->getDate() ?? 'Pas de date disponible' ?></p>
-        <p><?= $i->getDescription(); ?></p>
-        <p><?= $i->getId(); ?></p>
-        <p><a href="index.php?action=toutes-mes-illustrations&id=<?= $i->getId() ?>">Voir les détails</a></p>
+        <a href="index.php?action=toutes-mes-illustrations&id=<?= $i->getId() ?>"><img src="<?= $i->file_path ? $i->file_path : 'assets/img/none.jpg'; ?>" alt="Illustration : <?= $i->getName(); ?>" ></a>
     </div>
     <?php } 
 } else {
