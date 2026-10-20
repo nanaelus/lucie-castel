@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Application\Model\Workshop;
 
 use Application\Lib\Database\DatabaseConnection;
+use Application\Model\Media\Media;
 
 require_once('src/Lib/Database.php');
 
@@ -60,5 +61,16 @@ Class WorkshopRepository
             return null;
         }
         return $workshops;
+    }
+
+    public function getBanner(): ?string
+    {
+        $media = new Media();
+        $media->connection = new DatabaseConnection();
+        $statement = $this->connection->getConnection()->query(
+            'SELECT file_path FROM media where entity_type = "workshop"'
+        );
+        $banner = $statement->fetchColumn();
+        return empty($banner) ? null : $banner;
     }
 }

@@ -19,6 +19,7 @@ class AllWorkshops
         $workshopRepository->connection = new DatabaseConnection();
 
         $workshops = $workshopRepository->getWorkshops();
+        $banner = $workshopRepository->getBanner();
 
         require('templates/all-workshops.php');
     }
