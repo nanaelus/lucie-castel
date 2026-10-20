@@ -116,12 +116,16 @@ class BookRepository
 
     public function getBookById(int $id): ?Book
     {
+        $media = new Media();
+        $media->connection = new DatabaseConnection();
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, attendees, summary, isbn FROM book WHERE id = $id"
         );
         $row = $statement->fetch();
         if ($row) {
-            return new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
+            $book = new Book($row['id'], $row['name'], $row['french_date'], $row['attendees'], $row['summary'], $row['isbn']);
+            $book->medias = $media->getMediasByEntityIdAndType($id, 'book');
+            return $book;
         }
         return null;
     }

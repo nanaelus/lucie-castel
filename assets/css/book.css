@@ -1,0 +1,27 @@
+main {
+    display: flex;
+    flex: 1;
+}
+
+.book-pictures {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 55%;
+    gap: 20px;
+}
+
+.book-pictures img {
+    width: 100%;
+    max-width: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+}
+
+.about-book {
+    background: blueviolet;
+    flex-basis: 20%;
+    margin-left: 50px;
+    padding: 2em;
+}
+

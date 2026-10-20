@@ -19,4 +19,18 @@ class Media
         $media = $statement->fetchColumn();
         return $media ?: null;
     }
+
+    public function getMediasByEntityIdAndType(int $entityId, string $type): ?array
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            "SELECT file_path FROM media WHERE entity_id = :entityId AND entity_type = :type"
+        );
+        $statement->execute([
+            'entityId' => $entityId,
+            'type'     => $type
+        ]);
+        $medias = $statement->fetchAll(\PDO::FETCH_COLUMN);
+
+    return empty($medias) ? null : $medias;
+    }
 }
