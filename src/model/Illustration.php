@@ -70,12 +70,16 @@ class IllustrationRepository
 
     public function getIllustrationById(int $id): ?Illustration
     {
+        $media = new Media();
+        $media->connection = new DatabaseConnection();
         $statement = $this->connection->getConnection()->query(
             "SELECT id, name, DATE_FORMAT(date, '%d-%m-%y') AS french_date, description FROM illustration WHERE id = $id"
         );
         $row = $statement->fetch();
         if($row) {
-            return new Illustration($row['id'], $row['name'], $row['french_date'], $row['description']);
+            $illustration = new Illustration($row['id'], $row['name'], $row['french_date'], $row['description']);
+            $illustration->medias = $media->getMediasByEntityIdAndType($id, 'illustration');
+            return $illustration;
         }
         return null;
     }
