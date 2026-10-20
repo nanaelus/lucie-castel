@@ -4,9 +4,9 @@
 <link href="./assets/css/book.css" rel="stylesheet" />
 <main>
     <div class="book-pictures">
-        <img src="assets/img/none.jpg">
-        <img src="assets/img/none.jpg">
-        <img src="assets/img/none.jpg">
+        <?php foreach ($book->medias as $m) { ?>
+            <img src="<?= $m; ?>">
+        <?php } ?>
     </div>
     <div class="about-book">
         <h1><?php echo $book->getName(); ?></h1>
