@@ -1,0 +1,15 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+banner img{
+  max-width: 1500px;
+  margin-left: 10em;
+  padding: 0px 50px;
+}
+
+.about-workshop {
+    margin: 50px;
+    padding: 50px;
+}
