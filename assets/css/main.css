@@ -68,3 +68,7 @@ main {
     object-fit: cover;
     display: block; 
 }
+
+h3 {
+    margin: 10px;
+}
