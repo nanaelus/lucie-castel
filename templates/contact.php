@@ -1,8 +1,10 @@
-<?php $title = "Lucie Castel"; ?>
+<?php 
+$title = "Lucie Castel"; 
+$css = '<link href="./assets/css/contact.css" rel="stylesheet">';
+?>
+
 
 <?php ob_start(); ?>
-
-<link href="./assets/css/contact.css" rel="stylesheet">
 
 <main>
     <section class="contact">
